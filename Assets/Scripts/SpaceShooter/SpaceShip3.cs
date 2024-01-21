@@ -68,25 +68,26 @@ public class SpaceShip3 : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Destroy(gameObject);
-        }
-    }
-
-    private void OnDestroy()
-    {
-        string[] tagsToDestroy = {"Spaceship1", "Spaceship2", "Spaceship3", "Spaceship4" };
-
-        foreach (string tag in tagsToDestroy)
-        {
-            GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(tag);
-
-            foreach (GameObject obj in objectsWithTag)
+            if (GameManagerSpaceShooter.instance.shieldPowerupStatus[2])
             {
-                Destroy(obj);
+                GameManagerSpaceShooter.instance.shieldPowerupStatus[2] = false;
+            }
+            else
+            {
+                Destroy(gameObject);
+                string[] tagsToDestroy = { "Spaceship1", "Spaceship2", "Spaceship3", "Spaceship4" };
+                foreach (string tag in tagsToDestroy)
+                {
+                    GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                    foreach (GameObject obj in objectsWithTag)
+                    {
+                        Destroy(obj);
+                    }
+                }
+                GameManagerSpaceShooter.instance.gameOver = true;
             }
         }
-
-        GameManagerSpaceShooter.instance.gameOver = true;
     }
 
 }

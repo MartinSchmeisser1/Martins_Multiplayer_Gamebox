@@ -32,7 +32,11 @@ public class Asteriod : FlyingObject
     {
         // check if the meteroid has really been hit in the screen
         Boolean checkIfInScreen = false;
-        if (transform.position.x > -10.5 && transform.position.x < 12 && transform.position.y > -6.5 && transform.position.x < 6.5)
+
+        float xKoord = this.transform.position.x;
+        float yKoord = this.transform.position.y;
+
+        if ( xKoord > -10 && xKoord < 10 && yKoord > -6 && yKoord < 6)
         {
             checkIfInScreen = true;
         }

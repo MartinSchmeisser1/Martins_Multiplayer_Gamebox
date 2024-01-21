@@ -8,9 +8,43 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
 
-    public TMP_Dropdown dropdown;
+    public Button numberOfPlayersDisplay;
     private int selectedNumberOfPlayers;
 
+    private void Start()
+    {
+        selectedNumberOfPlayers = 1;
+    }
+
+    private void Update()
+    {
+        TextMeshProUGUI buttonText = numberOfPlayersDisplay.GetComponentInChildren<TextMeshProUGUI>();
+        
+        if (selectedNumberOfPlayers == 1)
+        {
+            buttonText.text = "1 Player";
+        }
+        else
+        {
+            buttonText.text = selectedNumberOfPlayers.ToString() + " Players";
+        }
+
+
+        // Crappy Controller Menu Controls
+        if (Input.GetButtonDown("Xb_RB"))
+        {
+            AddPlayer();
+        }
+        if (Input.GetButtonDown("Xb_LB"))
+        {
+            RemovePlayer();
+        }
+        if (Input.GetButtonDown("Cancel"))
+        {
+            StartSpaceShooter();
+        }
+
+    }
 
     public void StartSpaceShooter()
     {
@@ -40,15 +74,32 @@ public class MainMenu : MonoBehaviour
         GameManagerSpaceShooter gameManagerSpaceShooter = GameManagerSpaceShooter.instance;
 
         // Set the number of players in the GameManager
-        gameManagerSpaceShooter.numberOfPlayers = selectedNumberOfPlayers + 1;
+        gameManagerSpaceShooter.numberOfPlayers = selectedNumberOfPlayers;
 
         gameManagerSpaceShooter.Reset();
     }
 
 
-    public void NumberOfPlayerSelection()
+    public void AddPlayer()
     {
-        selectedNumberOfPlayers = dropdown.value;
+        if(selectedNumberOfPlayers < 4)
+        {
+            selectedNumberOfPlayers += 1;
+        }
+    }
+
+    public void RemovePlayer()
+    {
+        if (selectedNumberOfPlayers > 1)
+        {
+            selectedNumberOfPlayers -= 1;
+        }
+    }
+
+    public void QuitApplication()
+    {
+        //UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
     }
 
 }

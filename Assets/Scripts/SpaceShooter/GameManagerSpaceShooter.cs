@@ -15,6 +15,7 @@ public class GameManagerSpaceShooter : MonoBehaviour
     public GameObject[] spaceships;
     public int[] multiattackPowerupStatus;
     public float[] attackspeedPowerupStatus;
+    public bool[] shieldPowerupStatus;
 
 
     private void Awake() 
@@ -30,7 +31,7 @@ public class GameManagerSpaceShooter : MonoBehaviour
         score = 0;
         gameOver = false;
 
-        string[] tagsToDestroy = { "Enemy", "Powerup_Multiattack", "Powerup_Attackspeed"};
+        string[] tagsToDestroy = { "Enemy", "Powerup_Multiattack", "Powerup_Attackspeed", "Nuke_Pet"};
 
         foreach (string tag in tagsToDestroy)
         {
@@ -44,6 +45,7 @@ public class GameManagerSpaceShooter : MonoBehaviour
         
         multiattackPowerupStatus = new int[numberOfPlayers];
         attackspeedPowerupStatus = new float[numberOfPlayers];
+        shieldPowerupStatus = new bool[numberOfPlayers];
 
         // Assign spaceships to the array elements
         for (int i = 0; i < numberOfPlayers; i++)
@@ -51,6 +53,7 @@ public class GameManagerSpaceShooter : MonoBehaviour
             Instantiate(spaceships[i]);
             multiattackPowerupStatus[i] = 0; // Initial value for multiattack powerup
             attackspeedPowerupStatus[i] = 0.5f; // Initial value for attackspeed powerup
+            shieldPowerupStatus[i] = false;
         }
 
     }

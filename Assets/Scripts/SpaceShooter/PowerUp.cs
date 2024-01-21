@@ -20,7 +20,16 @@ public class PowerUp : FlyingObject
 
     void Update()
     {
-        transform.Rotate(new Vector3(180, 180, 0) * Time.deltaTime);
+        if (gameObject.tag == "Nuke_Pet")
+        {
+            // Nuke pet is 2D and is therefore rotated differently
+            transform.Rotate(new Vector3(0, 0, 180) * Time.deltaTime);
+        }
+        else
+        {
+            transform.Rotate(new Vector3(180, 180, 0) * Time.deltaTime);
+        }
+
         transform.Translate(new Vector3(flightDirectionX, flightDirectionY, 0) * speed * Time.deltaTime, Space.World);
         CheckIfOutOfBoundsAndDestroy();
     }
@@ -39,49 +48,32 @@ public class PowerUp : FlyingObject
                         GameManagerSpaceShooter.instance.multiattackPowerupStatus[i] += 1;
                         break;
                     case "Powerup_Attackspeed":
-                        Debug.Log("Powerup Collected");
-                        GameManagerSpaceShooter.instance.attackspeedPowerupStatus[i] /= 2;
+                        if (GameManagerSpaceShooter.instance.attackspeedPowerupStatus[i] > 0)
+                        {
+                            GameManagerSpaceShooter.instance.attackspeedPowerupStatus[i] -= 0.1f;
+                        }
+                        break;
+                    case "Powerup_Shield":
+                        GameManagerSpaceShooter.instance.shieldPowerupStatus[i] = true;
+                        break;
+                    case "Nuke_Pet":
+                        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Enemy");
+
+                        foreach (GameObject obj in objectsWithTag)
+                        {
+                            //Check if in screen
+                            float xKoord = obj.transform.position.x;
+                            float yKoord = obj.transform.position.y;
+
+                            if (xKoord > -10 && xKoord < 10 && yKoord > -6 && yKoord < 6)
+                            {
+                                Destroy(obj);
+                                GameManagerSpaceShooter.instance.score += 1;
+                            }
+                        }
                         break;
                 }
             }
         }
     }
-
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-
-    //    if (other.gameObject.tag == "Spaceship1")
-    //    {
-    //        Destroy(gameObject);
-
-    //        switch(gameObject.tag)
-    //        {
-    //            case "Powerup_Multiattack":
-    //                GameManagerSpaceShooter.instance.multiattackPowerupStatus[0] += 1;
-    //                break;
-    //            case "Powerup_Attackspeed":
-    //                Debug.Log("Powerup Collected");
-    //                GameManagerSpaceShooter.instance.attackspeedPowerupStatus[0] = GameManagerSpaceShooter.instance.attackspeedPowerupStatus[0] / 2;
-    //                break;
-    //        }
-    //    }
-
-    //    if (other.gameObject.tag == "Spaceship2")
-    //    {
-    //        Destroy(gameObject);
-
-    //        switch (gameObject.tag)
-    //        {
-    //            case "Powerup_Multiattack":
-    //                GameManagerSpaceShooter.instance.multiattackPowerupStatus[1] += 1;
-    //                break;
-    //            case "Powerup_Attackspeed":
-    //                Debug.Log("Powerup Collected");
-    //                GameManagerSpaceShooter.instance.attackspeedPowerupStatus[1] = GameManagerSpaceShooter.instance.attackspeedPowerupStatus[1] / 2;
-    //                break;
-    //        }
-    //    }
-    //}
-
 }

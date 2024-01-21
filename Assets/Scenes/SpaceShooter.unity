@@ -185,6 +185,8 @@ MonoBehaviour:
   spawnInterval: 1
   multiattackPowerup: {fileID: 2701043261500249095, guid: 595b43b8e17e24c44beff42d4f1674ab, type: 3}
   attackspeedPowerup: {fileID: 8675985045912274417, guid: 6a78c31378f90fe4ba99dc72e4add197, type: 3}
+  nukePet: {fileID: 1254422222323164829, guid: 6888c9793612c7b42942a0e04d379bdb, type: 3}
+  shieldPowerup: {fileID: 2268538678893706133, guid: a7fc1781c8a3d96419f8e3464f666c2b, type: 3}
 --- !u!1 &454026108
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,12 +660,9 @@ MonoBehaviour:
   - {fileID: 1566067344663335540, guid: c9d978a0444b4b849b013d0aca6fafd2, type: 3}
   - {fileID: 7479420598193841262, guid: 0b8be67af82fb0849aa7ceb42d65d011, type: 3}
   - {fileID: 3746220097298854420, guid: cbc47ff56539b744a931e84f9ccdb298, type: 3}
-  spaceship1: {fileID: 2917302192223981291, guid: c4822bf3138529143804e94c6200f143, type: 3}
-  spaceship2: {fileID: 1566067344663335540, guid: c9d978a0444b4b849b013d0aca6fafd2, type: 3}
-  spaceship3: {fileID: 7479420598193841262, guid: 0b8be67af82fb0849aa7ceb42d65d011, type: 3}
-  spaceship4: {fileID: 3746220097298854420, guid: cbc47ff56539b744a931e84f9ccdb298, type: 3}
   multiattackPowerupStatus: 
   attackspeedPowerupStatus: []
+  shieldPowerupStatus: 
 --- !u!4 &1002428858
 Transform:
   m_ObjectHideFlags: 0

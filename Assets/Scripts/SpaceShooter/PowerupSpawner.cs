@@ -11,6 +11,8 @@ public class PowerupSpawner : MonoBehaviour
 
     public GameObject multiattackPowerup;
     public GameObject attackspeedPowerup;
+    public GameObject nukePet;
+    public GameObject shieldPowerup;
 
 
     bool SpawnTimerFinished()
@@ -61,15 +63,26 @@ public class PowerupSpawner : MonoBehaviour
 
         float randomValue = UnityEngine.Random.Range(0f, 1f);
 
-        if (randomValue <= 0.5f)
+        if (randomValue <= 0.3f)
         {
-            // 50% chance to spawn multiattackPowerup
+            // 1/3 chance to spawn multiattackPowerup
             Instantiate(multiattackPowerup, spawnPosition, multiattackPowerup.transform.rotation);
+        }
+        else if (randomValue <= 0.6f)
+        {
+            // 1/3 chance to spawn attackSpeedPowerup
+            Instantiate(attackspeedPowerup, spawnPosition, attackspeedPowerup.transform.rotation);
+        }
+        else if (randomValue <= 0.9f)
+        {
+            // 1/3 chance to spawn attackSpeedPowerup
+            Instantiate(shieldPowerup, spawnPosition, shieldPowerup.transform.rotation);
         }
         else
         {
-            // 50% chance to spawn attackspeedPowerup
-            Instantiate(attackspeedPowerup, spawnPosition, attackspeedPowerup.transform.rotation);
+            // 1/3 chance to spawn nukePet
+            Instantiate(nukePet, spawnPosition, nukePet.transform.rotation);
         }
+
     }
 }

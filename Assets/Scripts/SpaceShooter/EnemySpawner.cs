@@ -6,18 +6,18 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
 
-    public float spawnInterval = 0.2f;    
+    public float spawnInterval = 0.25f;    
     private float spawnTimer = 2;
     private float increasingTimer = 10;
     public GameObject asteriod;
 
     void IncreaseDifficulty()
     {
-        increasingTimer = increasingTimer - Time.deltaTime;
+        increasingTimer -= Time.deltaTime;
 
         if (increasingTimer <= 0)
         {
-            spawnInterval = spawnInterval / 1.5f;
+            spawnInterval /= 1.2f;
             increasingTimer = 5;
         }
     }

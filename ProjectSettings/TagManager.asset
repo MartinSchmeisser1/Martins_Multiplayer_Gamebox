@@ -12,6 +12,8 @@ TagManager:
   - Spaceship2
   - Spaceship3
   - Spaceship4
+  - Nuke_Pet
+  - Powerup_Shield
   layers:
   - Default
   - TransparentFX
